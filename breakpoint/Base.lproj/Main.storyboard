@@ -309,7 +309,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="me-tabIcon" selectedImage="me-tabIcon" id="0rL-qU-0hP"/>
                     <connections>
-                        <outlet property="imageLbl" destination="aS6-xz-85T" id="2VS-Q2-LvF"/>
+                        <outlet property="emailLbl" destination="aS6-xz-85T" id="2VS-Q2-LvF"/>
                         <outlet property="profileImage" destination="Op9-Hh-fKh" id="VQS-W0-SE3"/>
                         <outlet property="tableView" destination="hKu-it-dhE" id="gc7-rs-Aif"/>
                     </connections>

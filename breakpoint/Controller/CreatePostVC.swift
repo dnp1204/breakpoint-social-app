@@ -21,6 +21,12 @@ class CreatePostVC: UIViewController {
         textView.delegate = self
         sendBtn.bindToKeyBoard()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.emailLbl.text = Auth.auth().currentUser?.email
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
