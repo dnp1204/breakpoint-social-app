@@ -15,8 +15,10 @@ class CreateGroupVC: UIViewController {
     @IBOutlet weak var emailSearchTextField: InsetTextField!
     @IBOutlet weak var groupMemeberLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var doneBtn: UIButton!
     
     var emailArray = [String]()
+    var choosenUserArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,12 @@ class CreateGroupVC: UIViewController {
         tableView.dataSource = self
         emailSearchTextField.delegate = self
         emailSearchTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        doneBtn.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,9 +73,31 @@ extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? UserCell else { return UITableViewCell() }
         
         let profileImage = UIImage(named: "defaultProfileImage")
-        cell.configureCell(profileImage: profileImage!, email: emailArray[indexPath.row], isSelected: true)
+        
+        if choosenUserArray.contains(emailArray[indexPath.row]) {
+            cell.configureCell(profileImage: profileImage!, email: emailArray[indexPath.row], isSelected: true)
+        } else {
+            cell.configureCell(profileImage: profileImage!, email: emailArray[indexPath.row], isSelected: false)
+        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? UserCell else { return }
+        if !choosenUserArray.contains(cell.emailLbl.text!) {
+            choosenUserArray.append(cell.emailLbl.text!)
+            groupMemeberLbl.text = choosenUserArray.joined(separator: ", ")
+            doneBtn.isHidden = false
+        } else {
+            choosenUserArray = choosenUserArray.filter({ $0 != cell.emailLbl.text! })
+            if choosenUserArray.count >= 1 {
+                groupMemeberLbl.text = choosenUserArray.joined(separator: ", ")
+            } else {
+                groupMemeberLbl.text = "added people to your group"
+                doneBtn.isHidden = true
+            }
+        }
     }
 }
 

@@ -301,7 +301,7 @@
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add people to your group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1R-FO-Qre">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add people to your group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="r1R-FO-Qre">
                                         <rect key="frame" x="0.0" y="119" width="335" height="19"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
                                         <color key="textColor" red="0.56078431370000004" green="0.81176470590000005" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -384,6 +384,7 @@
                     </view>
                     <connections>
                         <outlet property="descriptionTextField" destination="IKx-61-XN1" id="x1e-vK-AjT"/>
+                        <outlet property="doneBtn" destination="PUl-Mt-Pln" id="Wv4-L0-1Qz"/>
                         <outlet property="emailSearchTextField" destination="gO8-X5-YZq" id="Box-qX-vDo"/>
                         <outlet property="groupMemeberLbl" destination="r1R-FO-Qre" id="DaA-JR-ASJ"/>
                         <outlet property="tableView" destination="O5R-Vc-3jZ" id="5tC-I8-wPw"/>
