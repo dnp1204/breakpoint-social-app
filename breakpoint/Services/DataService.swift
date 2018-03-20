@@ -77,7 +77,7 @@ class DataService {
         }
     }
     
-    func getEmai(forSearchQuery query: String, handler: @escaping (_ emailArray: [String]) -> ()) {
+    func getEmail(forSearchQuery query: String, handler: @escaping (_ emailArray: [String]) -> ()) {
         var emailArray = [String]()
         
         REF_USERS.observe(.value) { (userSnapshot) in
@@ -92,6 +92,24 @@ class DataService {
             
             handler(emailArray)
         }
+    }
+    
+    func getIds(forUsernames usernames: [String], handler: @escaping(_ uidArray: [String]) -> ()) {
+        REF_USERS.observe(.value) { (userSnapshot) in
+            var idArray = [String]()
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in userSnapshot {
+                if usernames.contains(user.childSnapshot(forPath: "email").value as! String) {
+                    idArray.append(user.key)
+                }
+            }
+            handler(idArray)
+        }
+    }
+    
+    func createGroup(withTitle title: String, andDescription description: String, forUserIds ids: [String], handler: @escaping (_ groupCreated: Bool) ->()) {
+        REF_GROUPS.childByAutoId().updateChildValues(["title": title, "description": description, "memebers": ids])
+        handler(true)
     }
     
 }
